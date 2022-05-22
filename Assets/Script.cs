@@ -23,7 +23,6 @@ public class Script : MonoBehaviour
     [SerializeField]
     int startSeconds;
 
-    float simTime;
     Rigidbody2D rb;
 
     float StartTime => (float)DateTime.Now
@@ -43,15 +42,9 @@ public class Script : MonoBehaviour
         rb.velocity = new Vector2(-speed, 0);
     }
 
-    void Update()
-    {
-        simTime += Time.deltaTime;
-
-    }
-
     void FixedUpdate()
     {
-        var y = Mathf.Sin((useStartTime ? simTime + StartTime : Time.time) * speed);
+        var y = Mathf.Sin((useStartTime ? Time.time + StartTime : Time.time) * speed);
         transform.position = new Vector3(transform.position.x, y);
     }
 
